@@ -18,8 +18,21 @@ public class Image {
     private String url;
     @Column(name = "year")
     private int year;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "car_id")
+//    private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car_id")
-    private Car car;
+    public String getTitle(){
+        return title;
+    }
+    public void setTitle(String title){
+        this.title = title;
+    }
+    public String getUrl(){
+        return url;
+    }
+    public void setUrl(String url){
+        this.url = url;
+    }
 }

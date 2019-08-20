@@ -26,7 +26,38 @@ public class Car {
     @Column(name = "miles")
     private int miles;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
-    private List<Image> images;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
+//    private List<Image> images;
+
+    public String getBrand(){
+        return brand;
+    }
+    public void setBrand(String brand){
+        this.brand = brand;
+    }
+    public String getModel(){
+        return model;
+    }
+    public void setModel(String model){
+        this.model = model;
+    }
+    public String getYear(){
+        return brand;
+    }
+    public void setYear(int year){
+        this.year = year;
+    }
+    public String getColor(){
+        return color;
+    }
+    public void setColor(String color){
+        this.color = color;
+    }
+    public String getMiles(){
+        return brand;
+    }
+    public void setMiles(int miles){
+        this.miles = miles;
+    }
 
 }

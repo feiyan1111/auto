@@ -4,11 +4,11 @@ CREATE TABLE images (
     title varchar(255) not NULL,
     url varchar(255) not NULL,
     car_id bigint DEFAULT NULL,
-    primary key (id),
-    CONSTRAINT fk_image_car
-        FOREIGN KEY (car_id)
-        REFERENCES cars (id)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
+    primary key (id)
+--     CONSTRAINT fk_image_car
+--         FOREIGN KEY (car_id)
+--         REFERENCES cars (id)
+--         ON DELETE NO ACTION
+--         ON UPDATE NO ACTION
 );
 ALTER SEQUENCE images_id_seq OWNED BY images.id;
