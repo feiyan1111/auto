@@ -4,6 +4,7 @@ package com.ascending.training.domain;
 import javax.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -28,6 +29,10 @@ public class Car {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
     private List<Image> images;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -62,6 +67,12 @@ public class Car {
     public void setMiles(int miles){
         this.miles = miles;
     }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<Image> getImages() {
         return images;
@@ -70,4 +81,5 @@ public class Car {
     public void setImages(List<Image> images) {
         this.images = images;
     }
+
 }

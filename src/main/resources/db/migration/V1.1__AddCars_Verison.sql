@@ -6,6 +6,12 @@ CREATE TABLE cars (
     year int not NULL,
     color varchar(255) not NULL,
     miles int not NULL,
-    primary key (id)
+    user_id bigint DEFAULT NULL,
+    primary key (id),
+    CONSTRAINT fk_car_user
+        FOREIGN KEY (user_id)
+        REFERENCES users (id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
 );
 ALTER SEQUENCE cars_id_seq OWNED BY cars.id;

@@ -2,6 +2,8 @@ package com.ascending.training.domain;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -18,6 +20,9 @@ public class User {
     private String first_name;
     @Column(name = "last_name")
     private String last_name;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Car> cars;
 
     public long getId() {
         return id;
@@ -39,5 +44,12 @@ public class User {
     }
     public void setLast_name(String last_name){
         this.last_name = last_name;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 }

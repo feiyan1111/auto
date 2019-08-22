@@ -102,16 +102,20 @@ public class CarRepositoryTest {
         assertEquals(1,cars.size());
         Car  car = cars.get(0);
         assertEquals(1,car.getImages().size());
-//        Iterable<Image> allImage = imageRepository.findAll();
-//        assertEquals(1,Iterables.size(allImage));
 
-//        carRepository.save(expectedcar);                    //create car instance, set image to this car, save this image, save this car
-//        imageRepository.save(expectedimage);
-//        Iterable<Car> allCar = carRepository.findAll();
-//        Iterable<Image> allImage = imageRepository.findAll();
-//        assertEquals(2,Iterables.size());
-//        Iterable<Car, Image> allCarWithImage = carRepository.findAllWithImages(Car, Image);
-//        assertEquals(2,Iterables.size(allCarWithImage));
+    }
+
+    @Test
+    @Transactional
+    public void findByIdWithImagesTest() {
+        carRepository.save(expectedcar);
+        expectedimage.setCar(expectedcar);
+        imageRepository.save(expectedimage);
+        Optional<Car> testCar = carRepository.findByIdWithImages(expectedcar.getId());
+        em.flush();
+        em.refresh(expectedcar);
+        assertNotNull(testCar);
+        assertEquals(expectedcar.getId(),testCar.get().getId());
 
     }
 
