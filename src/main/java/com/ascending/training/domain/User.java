@@ -19,6 +19,9 @@ public class User {
     @Column(name = "last_name")
     private String last_name;
 
+    public long getId() {
+        return id;
+    }
     public String Username(){
         return username;
     }

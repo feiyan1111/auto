@@ -26,9 +26,12 @@ public class Car {
     @Column(name = "miles")
     private int miles;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
-//    private List<Image> images;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
+    private List<Image> images;
 
+    public Long getId() {
+        return id;
+    }
     public String getBrand(){
         return brand;
     }
@@ -60,4 +63,11 @@ public class Car {
         this.miles = miles;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
 }

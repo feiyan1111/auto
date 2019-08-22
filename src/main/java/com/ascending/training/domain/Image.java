@@ -16,13 +16,14 @@ public class Image {
     private String title;
     @Column(name = "url")
     private String url;
-    @Column(name = "year")
-    private int year;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "car_id")
-//    private Car car;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id")
+    private Car car;
+
+    public Long getId() {
+        return id;
+    }
     public String getTitle(){
         return title;
     }
@@ -35,4 +36,11 @@ public class Image {
     public void setUrl(String url){
         this.url = url;
     }
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
 }

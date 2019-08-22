@@ -2,18 +2,31 @@ package com.ascending.training.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.omg.CORBA.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.ascending.training.repository")
 public class DataSourceinitializer {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     private String databaseUrl = "jdbc:postgresql://localhost:5432/auto_dev";
 
     private String databaseUserName = "admin";
@@ -25,7 +38,16 @@ public class DataSourceinitializer {
     @Bean(name = "dataSource")
     public DataSource getDataSource(){
         DataSource dataSource = createDataSource();
+        logger.debug("generating datasource");
         return dataSource;
+    }
+
+    @Bean(name="transactionManager")
+    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory")EntityManagerFactory entityManagerFactory,@Autowired DataSource dataSource) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        transactionManager.setDataSource(dataSource);
+        return transactionManager;
     }
 
     private BasicDataSource createDataSource(){
