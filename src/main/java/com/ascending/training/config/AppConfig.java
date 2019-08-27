@@ -7,15 +7,16 @@ import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.io.ClassPathResource;
 
 @Configuration
-@ComponentScan(basePackages = "com.ascending.training")
+@ComponentScan(basePackages = "com.ascending.training",
+        excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.ascending.training.api.*"))
 public class AppConfig {
-
     private final Logger logger = LoggerFactory.getLogger(AppConfig.class);
 
-//    @Bean(name = "shareProperties")
+//    @Bean(name = "sharePrope rties")
 //    public PropertiesFactoryBean getShareProperties() {
 //        logger.debug("I am in the share properties");
 //        PorpertiesFactoryBean bean = new PropertiesFactoryBean();
