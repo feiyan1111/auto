@@ -23,6 +23,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
     private List<Car> cars;
+//    public User(){};
 
     public long getId() {
         return id;
