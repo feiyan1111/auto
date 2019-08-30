@@ -26,6 +26,8 @@ public class Car {
     private String color;
     @Column(name = "miles")
     private int miles;
+    @Column(name = "price")
+    private int price;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "car",cascade = CascadeType.ALL)
     private List<Image> images;
@@ -61,11 +63,17 @@ public class Car {
     public void setColor(String color){
         this.color = color;
     }
-    public String getMiles(){
-        return brand;
+    public int getMiles(){
+        return miles;
     }
     public void setMiles(int miles){
         this.miles = miles;
+    }
+    public int getPrice() {
+        return price;
+    }
+    public void setPrice(int price){
+        this.price = price;
     }
     public User getUser() {
         return user;

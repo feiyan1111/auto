@@ -7,11 +7,11 @@ import java.util.List;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
-    @SequenceGenerator(name="users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "users_id_seq")
+    @SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "username")
@@ -20,36 +20,60 @@ public class User {
     private String first_name;
     @Column(name = "last_name")
     private String last_name;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "wechat")
+    private String wechat;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Car> cars;
 //    public User(){};
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public String Username(){
+
+    public String Username() {
         return username;
     }
-    public void setUsername(String Username){
+
+    public void setUsername(String username) {
         this.username = username;
     }
-    public String getFirst_name(){
+
+    public String getFirst_name() {
         return first_name;
     }
-    public void setFirst_name(String first_name){
+
+    public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
-    public String getLast_name(){
+
+    public String getLast_name() {
         return last_name;
     }
-    public void setLast_name(String last_name){
+
+    public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getWechat() {
+        return wechat;
+    }
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
     }
 
     public List<Car> getCars() {
         return cars;
     }
+
     public void setCars(List<Car> cars) {
         this.cars = cars;
     }

@@ -1,0 +1,1 @@
+alter table Cars add column price int;

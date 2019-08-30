@@ -17,4 +17,10 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("Select u FROM User u LEFT JOIN FETCH u.cars where u.id = ?1")
     Optional<User> findByIdWithCars(Long Id);
+
+    @Query("Select u FROM User u where u.email = ?1")
+    Optional<User> findByEmail(String Email);
+
+//    @Query("Select u FROM User u where u.email = ?1 and u.username = ?2")
+//    Optional<User> findByEmailOrUsername(String Email, String Username);
 }

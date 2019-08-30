@@ -2,6 +2,7 @@ package com.ascending.training.api;
 
 import com.ascending.training.domain.User;
 import com.ascending.training.repository.UserRepository;
+import com.ascending.training.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
     //http://localhost:8080/api/users GET
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUserList() {
@@ -40,5 +43,13 @@ public class UserController {
         Optional<User> opt = userRepository.findById(Id);
         return opt.get();
     }
+
+//    @RequestMapping(method = RequestMethod.GET,params = {"username","lastname","firstname"})
+//    public User getUserByUsername(@RequestParam("username") String username,
+//                                  @RequestParam("lastname") String lastname,
+//                                  @RequestParam("firstname") String firstname) {
+//        User user = userService.findByEmailOrUsername(username);
+//        return user;
+//    }
 
 }

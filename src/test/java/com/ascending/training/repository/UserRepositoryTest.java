@@ -45,6 +45,8 @@ public class UserRepositoryTest {
         expecteduser.setUsername("feiyan");
         expecteduser.setFirst_name("fei");
         expecteduser.setLast_name("yan");
+        expecteduser.setEmail("test@gmail.com");
+        expecteduser.setWechat("wxtest123");
         expectedcar = new Car();
         expectedcar.setBrand("toyota");
         expectedcar.setModel("camry");
